@@ -26,8 +26,11 @@ import django_heroku
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag')
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = True
-DEBUG = True
-ALLOWED_HOSTS = []
+DEBUG = False
+ALLOWED_HOSTS = [
+'https://miprimersitiowebenlanube.herokuapp.com',
+'localhost',
+'127.0.0.1']
 
 
 # Application definition
@@ -119,6 +122,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-STATIC_URL = '/static/'
+#STATIC_URL = '/static/'
+
+# Activa Django-Heroku.
 django_heroku.settings(locals())
