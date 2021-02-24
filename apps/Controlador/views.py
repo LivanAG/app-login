@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
+from django.contrib.auth.views import LoginView,FormView
+from .forms import *
+from django.contrib.auth.forms import UserCreationForm
 import os
 # Create your views here.
 
@@ -16,3 +19,22 @@ class IndexView(TemplateView):
         context['p'] = p
         
         return context
+
+class IniciarSesion(LoginView):
+    template_name = 'Controlador/login.html'
+    form_class = LoginForm
+
+class RegistrarView(FormView):
+    template_name = 'Controlador/registro.html'
+    form_class = UserCreationForm
+    success_url = '/'
+
+    def form_valid(self, form):
+        """Save form data."""
+        form.save()
+        return super().form_valid(form)
+
+
+class HomeView(TemplateView):
+    template_name='Controlador/home.html'
+   
